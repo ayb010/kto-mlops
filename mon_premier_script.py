@@ -1,32 +1,14 @@
-# Mon premier script corrigé
+from typing import List
 
-def count_long_names(prenoms, length=7):
+def count_long_names(names: List[str], threshold: int = 7) -> int:
     """
-    Compte le nombre de prénoms ayant plus de 'length' lettres.
-    
-    Args:
-        prenoms (list): Liste des prénoms.
-        length (int): Seuil de longueur pour considérer un prénom comme long. Par défaut, 7.
-    
-    Returns:
-        int: Nombre de prénoms ayant plus que 'length' lettres.
+    Retourne le nombre de chaînes dans `names` dont la longueur
+    est strictement supérieure à `threshold`.
     """
-    long_names_count = sum(1 for prenom in prenoms if len(prenom) > length)
-    
-    for prenom in prenoms:
-        status = "supérieur" if len(prenom) > length else "inférieur ou égal"
-        print(f"{prenom} est un prénom avec un nombre de lettres {status} à {length}.")
-    
-    return long_names_count
+    return sum(1 for name in names if len(name) > threshold)
 
 
-# Affichage du message initial
-message = "C'est mon premier script !!!"
-print(message)
-
-# Liste des prénoms
-prenoms = ["Guillaume", "Gilles", "Juliette", "Antoine", "François", "Cassandre"]
-
-# Exécution de la fonction et affichage du résultat
-count = count_long_names(prenoms)
-print(f"Nombre de prénoms dont le nombre de lettres est supérieur à 7 : {count}")  # Ligne corrigée
+if __name__ == "__main__":
+    prenoms = ["Guillaume", "Gilles", "Juliette", "Antoine", "François", "Cassandre"]
+    count = count_long_names(prenoms)
+    print(f"Nombre de prénoms dont le nombre de lettres est supérieur à {7} : {count}")
