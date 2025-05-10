@@ -1,0 +1,6 @@
+{
+  "kube-context": "openshift-context",
+  "namespace": "yzzz01-dev",
+  "repository-uri": "quay.io/yzzz01/kto/train/cats-dogs-other-2023-2024",
+  "kube-job-template-path": "job_template.yaml"
+}

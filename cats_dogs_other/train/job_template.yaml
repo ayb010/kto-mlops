@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mlflow-job
+  namespace: yzzz01-dev
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: mlflow-container
+        image: ""
+        env:
+        - name: MLFLOW_TRACKING_URI
+          value: "{{MLFLOW_TRACKING_URI}}"
+        - name: MLFLOW_RUN_ID
+          value: "{{MLFLOW_RUN_ID}}"
+        - name: AWS_ACCESS_KEY_ID
+          value: "{{AWS_ACCESS_KEY_ID}}"
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "{{AWS_SECRET_ACCESS_KEY}}"
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: "{{MLFLOW_S3_ENDPOINT_URL}}"
+        command: ["sh", "-c"]
+        args: ["mlflow run {{RUN_URI}} -e {{ENTRY_POINT}} {{PARAM_LIST}}"]
