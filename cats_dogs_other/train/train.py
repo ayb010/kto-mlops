@@ -13,16 +13,12 @@ parser = argparse.ArgumentParser("training")
 parser.add_argument("--split_ratio_train", type=float)
 parser.add_argument("--split_ratio_evaluate", type=float)
 parser.add_argument("--split_ratio_test", type=float)
-parser.add_argument("--batch_size", type=int)
-parser.add_argument("--epochs", type=int)
 parser.add_argument("--working_dir", type=str)
 
 args = parser.parse_args()
 split_ratio_train = args.split_ratio_train
 split_ratio_evaluate = args.split_ratio_evaluate
 split_ratio_test = args.split_ratio_test
-batch_size = args.batch_size
-epochs = args.epochs
 working_dir = args.working_dir
 
 if __name__ == "__main__":
@@ -55,15 +51,11 @@ if __name__ == "__main__":
         model_filename = "final_model.keras"
         model_plot_filename = "model_plot.png"
 
-        # train & evaluate
         model_dir = working_dir + "/model"
         model_path = model_dir + "/" + model_filename
         plot_filepath = model_dir + "/" + model_plot_filename
 
-        train_and_evaluate_model(train_dir, evaluate_dir, test_dir, model_dir, model_path,
-                                plot_filepath, batch_size, epochs)
+        train_and_evaluate_model(train_dir, evaluate_dir, test_dir, model_dir, model_path, plot_filepath)
 
-        # test the model
         model_inference = Inference(model_path)
-
         test_model(model_inference, model_dir, test_dir)
