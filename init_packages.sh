@@ -1,8 +1,11 @@
 #!/bin/bash
 
-set -e  # Stop script if any command fails
-
-cd packages
+cd packages/inference
+pip install --upgrade pip
+pip install build
+pip install .
 python setup.py sdist bdist_wheel
-cp dist/*.whl ../cats_dogs_other/api/
-cp dist/*.whl ../cats_dogs_other/label/
+
+cd ../../
+cp packages/inference/dist/*.whl cats_dogs_other/api/
+cp packages/inference/dist/*.whl cats_dogs_other/label/
