@@ -1,10 +1,8 @@
-pip install --upgrade pip
-pip install build
+#!/bin/bash
 
-pip install -e packages/inference
+set -e  # Stop script if any command fails
 
-cd packages/inference/
-python -m build --sdist --wheel
-cd dist
-cp *.whl ../../../cats_dogs_other/train/packages
-cd ../../../
+cd packages
+python setup.py sdist bdist_wheel
+cp dist/*.whl ../cats_dogs_other/api/
+cp dist/*.whl ../cats_dogs_other/label/
